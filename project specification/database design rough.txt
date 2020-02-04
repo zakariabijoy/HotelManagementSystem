@@ -3,7 +3,7 @@ Id	Name
 1	Hotel Room
 2	Apartment
 
-AccomodationPackages
+AccomodationPackage
 Id	AccomodationTypeId		Name		NoOfRoom	FeePerNight
 1	1			Standard		1		50
 2	1			Deluxe		1		70

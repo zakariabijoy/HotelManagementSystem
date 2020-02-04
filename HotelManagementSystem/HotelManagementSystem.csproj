@@ -202,7 +202,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002041942215_InitialMigration.cs" />
+    <Compile Include="Migrations\202002041942215_InitialMigration.Designer.cs">
+      <DependentUpon>202002041942215_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002041958312_BasicEntities.cs" />
+    <Compile Include="Migrations\202002041958312_BasicEntities.Designer.cs">
+      <DependentUpon>202002041958312_BasicEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Accomodation.cs" />
+    <Compile Include="Models\AccomodationPackage.cs" />
+    <Compile Include="Models\AccomodationType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,6 +296,14 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202002041942215_InitialMigration.resx">
+      <DependentUpon>202002041942215_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041958312_BasicEntities.resx">
+      <DependentUpon>202002041958312_BasicEntities.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
