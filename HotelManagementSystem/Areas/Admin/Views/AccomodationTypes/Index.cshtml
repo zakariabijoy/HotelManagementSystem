@@ -12,9 +12,9 @@
 <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search..">
     <div class="input-group-append" id="button-addon4">
-        <button class="btn btn-outline-primary" type="button">Search</button>
-        <button class="btn btn-outline-secondary" type="button">Reset</button>
-        <button id="create" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal">Create</button>
+        <button class="btn btn-outline-primary" type="button"><i class="fas fa-search mr-1"></i>Search</button>
+        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-redo mr-1"></i>Reset</button>
+        <button data-href="@Url.Action("Action","AccomodationTypes")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
     </div>
 </div>
 
@@ -37,8 +37,9 @@
                     <td>@accomodationType.Name</td>
                     <td>@accomodationType.Description</td>
                     <td>
-                        <button type="button" class="btn btn-primary">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button data-href="@Url.Action("Action","AccomodationTypes",new {id=accomodationType.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
+                        <button data-href="@Url.Action("Delete","AccomodationTypes",new {id=accomodationType.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+                       
                     </td>
                 </tr>
 
@@ -66,9 +67,9 @@ else
 @section scripts
 {
     <script>
-        $("#create").click(function() {
+        $(".data-href").click(function() {
             $.ajax({
-                    url: '@Url.Action("Action","AccomodationTypes")',
+                    url: $(this).attr("data-href"),
                 })
                 .done(function(response) {
                     $("#exampleModal .modal-dialog").html(response);

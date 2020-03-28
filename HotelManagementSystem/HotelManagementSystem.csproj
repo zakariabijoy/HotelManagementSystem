@@ -276,6 +276,7 @@
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Admin\Views\AccomodationTypes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AccomodationTypes\_Action.cshtml" />
+    <Content Include="Areas\Admin\Views\AccomodationTypes\_Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
