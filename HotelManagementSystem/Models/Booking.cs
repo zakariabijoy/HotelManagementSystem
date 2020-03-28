@@ -13,6 +13,8 @@ namespace HotelManagementSystem.Models
         /// <summary>
         /// No Of Stay Nights
         /// </summary>
-        public int Duration { get; set; }   
+        public int Duration { get; set; }
+
+       
     }
 }

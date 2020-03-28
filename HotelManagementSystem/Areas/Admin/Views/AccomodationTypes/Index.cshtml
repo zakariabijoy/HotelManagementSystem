@@ -1,0 +1,79 @@
+﻿@using HotelManagementSystem.Areas.Admin.ViewModel
+@model HotelManagementSystem.Areas.Admin.ViewModel.AccomodationTypeViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Accomodation Type</h2>
+<hr/>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search..">
+    <div class="input-group-append" id="button-addon4">
+        <button class="btn btn-outline-primary" type="button">Search</button>
+        <button class="btn btn-outline-secondary" type="button">Reset</button>
+        <button id="create" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal">Create</button>
+    </div>
+</div>
+
+@if (Model != null && Model.AccomodationTypes != null && Model.AccomodationTypes.Count() > 0)
+{
+    <table class="table tab">
+        <thead>
+            <tr>
+
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var accomodationType in Model.AccomodationTypes)
+            {
+                <tr>
+
+                    <td>@accomodationType.Name</td>
+                    <td>@accomodationType.Description</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+
+            }
+
+
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Sorry! No records exists.
+    </div>
+}
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $("#create").click(function() {
+            $.ajax({
+                    url: '@Url.Action("Action","AccomodationTypes")',
+                })
+                .done(function(response) {
+                    $("#exampleModal .modal-dialog").html(response);
+                });
+
+        });
+    </script>
+}

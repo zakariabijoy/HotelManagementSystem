@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/d2b4da42-eae6-4081-9368-92845e9da89a/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/HotelManagementSystem</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -197,7 +198,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccomodationTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Admin\ViewModel\AccomodationTypeViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -211,6 +214,10 @@
     <Compile Include="Migrations\202002041958312_BasicEntities.cs" />
     <Compile Include="Migrations\202002041958312_BasicEntities.Designer.cs">
       <DependentUpon>202002041958312_BasicEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002081907211_DescriptionIsAddedToAccomodationType.cs" />
+    <Compile Include="Migrations\202002081907211_DescriptionIsAddedToAccomodationType.Designer.cs">
+      <DependentUpon>202002081907211_DescriptionIsAddedToAccomodationType.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accomodation.cs" />
@@ -267,6 +274,8 @@
     <Content Include="Areas\Admin\Content\vendor\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.min.map" />
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Areas\Admin\Views\AccomodationTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AccomodationTypes\_Action.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -336,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002041958312_BasicEntities.resx">
       <DependentUpon>202002041958312_BasicEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002081907211_DescriptionIsAddedToAccomodationType.resx">
+      <DependentUpon>202002081907211_DescriptionIsAddedToAccomodationType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
