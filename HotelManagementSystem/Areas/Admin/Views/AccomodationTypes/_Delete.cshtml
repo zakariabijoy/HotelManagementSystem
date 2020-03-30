@@ -33,11 +33,10 @@
             $.ajax({
                 url: '@Url.Action("Delete","AccomodationTypes")',
                 type: "POST",
-                data:$("#actionForm").serialize()
-        })
-            .done(function(response) {
+                data: $("#actionForm").serialize()
+            }).done(function(response) {
                 if (response.success) {
-                    location.reload();
+                    location.href = '@Url.Action("Index","AccomodationTypes")';
                 } else {
                     alert("Unable to perform action on Accomodation Type");
                 }

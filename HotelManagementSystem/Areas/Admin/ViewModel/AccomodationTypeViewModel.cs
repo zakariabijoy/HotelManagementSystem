@@ -6,6 +6,7 @@ namespace HotelManagementSystem.Areas.Admin.ViewModel
     public class AccomodationTypeViewModel
     {
         public IEnumerable<AccomodationType> AccomodationTypes { get; set; }
+        public string SearchTerm { get; set; }
     }
 
     public class AccomodationTypeActionViewModel
@@ -13,6 +14,7 @@ namespace HotelManagementSystem.Areas.Admin.ViewModel
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+       
     }
 
 }

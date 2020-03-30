@@ -9,15 +9,16 @@
 
 <h2>Accomodation Type</h2>
 <hr/>
-<div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search..">
-    <div class="input-group-append" id="button-addon4">
-        <button class="btn btn-outline-primary" type="button"><i class="fas fa-search mr-1"></i>Search</button>
-        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-redo mr-1"></i>Reset</button>
-        <button data-href="@Url.Action("Action","AccomodationTypes")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
+<form>
+    <div class="input-group mb-3">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search.." value="@Model.SearchTerm">
+        <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search mr-1"></i>Search</button>
+            <a class="btn btn-outline-secondary" href="@Url.Action("Index","AccomodationTypes")"><i class="fas fa-redo mr-1"></i>Reset</a>
+            <button data-href="@Url.Action("Action","AccomodationTypes")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
+        </div>
     </div>
-</div>
-
+</form>
 @if (Model != null && Model.AccomodationTypes != null && Model.AccomodationTypes.Count() > 0)
 {
     <table class="table tab">

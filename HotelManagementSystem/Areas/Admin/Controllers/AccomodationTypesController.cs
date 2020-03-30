@@ -10,15 +10,30 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
     {  
          ApplicationDbContext _context = new ApplicationDbContext();
         // GET: Admin/AccomodationTypes
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
-            var accomodationTypes = _context.AccomodationTypes.ToList();
-            var viewModel = new  AccomodationTypeViewModel()
+            if (string.IsNullOrEmpty(searchTerm))
             {
-                AccomodationTypes = accomodationTypes
-            };
+                var accomodationTypes = _context.AccomodationTypes.ToList();
+                var viewModel = new AccomodationTypeViewModel()
+                {
+                    AccomodationTypes = accomodationTypes
+                };
 
-            return View(viewModel);
+                return View(viewModel);
+            }
+            else
+            {
+                var accomodationTypes = _context.AccomodationTypes.Where(a => a.Name.Contains(searchTerm)).ToList();
+
+                var viewModel = new AccomodationTypeViewModel()
+                {
+                    AccomodationTypes = accomodationTypes,
+                    SearchTerm = searchTerm
+                };
+                return View(viewModel);
+            }
+            
         }
 
         [HttpGet]

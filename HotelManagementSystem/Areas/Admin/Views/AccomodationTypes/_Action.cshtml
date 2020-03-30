@@ -46,7 +46,7 @@
         })
             .done(function(response) {
                 if (response.success) {
-                    location.reload();
+                    location.href = '@Url.Action("Index","AccomodationTypes")';
                 } else {
                     alert("Unable to perform action on Accomodation Type");
                 }
