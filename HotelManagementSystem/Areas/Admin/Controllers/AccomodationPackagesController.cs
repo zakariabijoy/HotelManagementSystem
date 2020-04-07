@@ -18,7 +18,6 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
         // GET: Admin/AccomodationTypes
         public ActionResult Index(string searchTerm, int? accomodationTypeId, int? page)
         {
-            int recordSize = 3;
             page = page ?? 1;
             var accomodationTypes = _context.AccomodationTypes.ToList();
             var model = new AccomodationPackagesViewModel()

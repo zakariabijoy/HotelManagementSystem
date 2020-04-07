@@ -1,0 +1,112 @@
+﻿@using HotelManagementSystem.Areas.Admin.ViewModel
+@using PagedList.Mvc
+@using PagedList
+@model HotelManagementSystem.Areas.Admin.ViewModel.AccomodationViewModel
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Accomodations</h2>
+<hr />
+<form>
+    <div class="input-group mb-3">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search.." value="@Model.SearchTerm">
+        <select class="custom-select" id="inputGroupSelect01" name="AccomodationPackageId">
+            <option value="">Select Accomodation Package...</option>
+            @if (Model.AccomodationPackages != null && Model.AccomodationPackages.Count() > 0)
+            {
+                foreach (var accomodationPackage in Model.AccomodationPackages)
+                {
+                    <option value="@accomodationPackage.Id" @(accomodationPackage.Id == Model.AccomodationPackageId ? "selected" : "")>@accomodationPackage.Name</option>
+                }
+
+            }
+
+        </select>
+        <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search mr-1"></i>Search</button>
+            <a class="btn btn-outline-secondary" href="@Url.Action("Index", "Accomodation")"><i class="fas fa-redo mr-1"></i>Reset</a>
+            <button data-href="@Url.Action("Action", "Accomodation")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
+        </div>
+    </div>
+</form>
+@if (Model != null && Model.Accomodations != null && Model.Accomodations.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Accomodation Package</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var accomodation in Model.Accomodations)
+            {
+                <tr>
+                    <td>@accomodation.Name</td>
+                    <td>@accomodation.Description</td>
+                    <td>@accomodation.AccomodationPackage.Name</td>
+
+                    <td>
+                        <button data-href="@Url.Action("Action","Accomodation",new {id=accomodation.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
+                        <button data-href="@Url.Action("Delete","Accomodation",new {id=accomodation.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+
+                    </td>
+                </tr>
+
+            }
+
+
+
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.Accomodations, i => Url.Action("Index", "Accomodation", new { searchTerm = Model.SearchTerm, accomodationPackageId = Model.AccomodationPackageId, page = i }), new PagedListRenderOptions
+    {
+
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" }
+
+
+    })
+}
+else
+{
+<div class="alert alert-warning" role="alert">
+    Sorry! No records exists.
+</div>
+}
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".page-item a").addClass("page-link");
+        });
+
+    </script>
+    <script>
+        $(".data-href").click(function () {
+            $.ajax({
+                url: $(this).attr("data-href"),
+            })
+                .done(function (response) {
+                    $("#exampleModal .modal-dialog").html(response);
+                });
+
+        });
+    </script>
+}
