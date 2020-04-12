@@ -10,7 +10,7 @@ using PagedList;
 
 namespace HotelManagementSystem.Areas.Admin.Controllers
 {
-    public class AccomodationController : Controller
+    public class AccomodationsController : Controller
     {
         // GET: Admin/Accomodation
         ApplicationDbContext _context = new ApplicationDbContext();

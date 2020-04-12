@@ -55,13 +55,13 @@
     $("#actionButton").click(function () {
 
             $.ajax({
-                url: '@Url.Action("Action","Accomodation")',
+                url: '@Url.Action("Action","Accomodations")',
                 type: "POST",
                 data:$("#actionForm").serialize()
         })
             .done(function(response) {
                 if (response.success) {
-                    location.href = '@Url.Action("Index","Accomodation")';
+                    location.href = '@Url.Action("Index","Accomodations")';
                 } else {
                     alert("Unable to perform action on Accomodation Package");
                 }

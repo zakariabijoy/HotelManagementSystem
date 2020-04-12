@@ -1,0 +1,89 @@
+﻿@using HotelManagementSystem.Areas.Admin.ViewModel
+@model HotelManagementSystem.Areas.Admin.ViewModel.UsersActionViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        @if (!string.IsNullOrEmpty(Model.Id))
+        {
+            <h5 class="modal-title" id="exampleModalLabel">Edit User </h5>
+        }
+        else
+        {
+            <h5 class="modal-title" id="exampleModalLabel">Create User </h5>
+        }
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="actionForm">
+            <input id="hiddenId" type="hidden" name="Id" value="@Model.Id" />
+            @*<div class="form-group">
+            <label>Accomodation Package</label>
+            <select name="AccomodationPackageId" class="form-control">
+                <option value="">--Select Accomodation Package--</option>
+                @if (Model.AccomodationPackages != null)
+                {
+                    foreach (var accomodationPackage in Model.AccomodationPackages)
+                    {
+                        <option value="@accomodationPackage.Id" @(Model.AccomodationPackageId == null ? string.Empty : Model.AccomodationPackageId == accomodationPackage.Id ? "selected" : string.Empty)>
+                            @accomodationPackage.Name
+                        </option>
+                    }
+                }
+            </select>
+        </div>*@
+            <div class="form-group">
+                <label>Full Name</label>
+                <input name="FullName" class="form-control" placeholder="Enter Full  Name" value="@Model.FullName">
+            </div>
+            <div class="form-group">
+                <label>User Name</label>
+                <input name="UserName" class="form-control" placeholder="Enter User  Name" value="@Model.UserName">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input name="Email" class="form-control" placeholder="Enter Email" value="@Model.Email">
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <input name="Country" class="form-control" placeholder="Enter City  Name" value="@Model.Country">
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <textarea name="Country" class="form-control" placeholder="Enter Address" rows="3">@Model.Address</textarea>
+            </div>
+
+
+        </form>
+
+        <div class="errorDiv text-danger">
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i>Close</button>
+        <button id="actionButton" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Save changes</button>
+    </div>
+</div>
+
+<script>
+    $("#actionButton").click(function () {
+
+            $.ajax({
+                url: '@Url.Action("Action","Users")',
+                type: "POST",
+                data:$("#actionForm").serialize()
+        })
+                .done(function (response) {
+                    if (response.success) {
+                        location.reload();
+                    }
+                    else {
+                        $(".errorDiv").html(response.message);
+                    }
+                   
+            });
+    });
+</script>

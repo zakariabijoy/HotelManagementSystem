@@ -29,8 +29,8 @@
         </select>
         <div class="input-group-append" id="button-addon4">
             <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search mr-1"></i>Search</button>
-            <a class="btn btn-outline-secondary" href="@Url.Action("Index", "Accomodation")"><i class="fas fa-redo mr-1"></i>Reset</a>
-            <button data-href="@Url.Action("Action", "Accomodation")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
+            <a class="btn btn-outline-secondary" href="@Url.Action("Index", "Accomodations")"><i class="fas fa-redo mr-1"></i>Reset</a>
+            <button data-href="@Url.Action("Action", "Accomodations")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
         </div>
     </div>
 </form>
@@ -55,8 +55,8 @@
                     <td>@accomodation.AccomodationPackage.Name</td>
 
                     <td>
-                        <button data-href="@Url.Action("Action","Accomodation",new {id=accomodation.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
-                        <button data-href="@Url.Action("Delete","Accomodation",new {id=accomodation.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+                        <button data-href="@Url.Action("Action","Accomodations",new {id=accomodation.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
+                        <button data-href="@Url.Action("Delete","Accomodations",new {id=accomodation.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
 
                     </td>
                 </tr>
@@ -67,7 +67,7 @@
 
         </tbody>
     </table>
-    @Html.PagedListPager(Model.Accomodations, i => Url.Action("Index", "Accomodation", new { searchTerm = Model.SearchTerm, accomodationPackageId = Model.AccomodationPackageId, page = i }), new PagedListRenderOptions
+    @Html.PagedListPager(Model.Accomodations, i => Url.Action("Index", "Accomodations", new { searchTerm = Model.SearchTerm, accomodationPackageId = Model.AccomodationPackageId, page = i }), new PagedListRenderOptions
     {
 
         UlElementClasses = new string[] { "pagination" },

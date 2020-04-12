@@ -210,13 +210,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccomodationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccomodationsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccomodationPackagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccomodationTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModel\AccomodationPackagesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\AccomodationTypeViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\AccomodationViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModel\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -238,6 +240,10 @@
     <Compile Include="Migrations\202004071701536_Description Is Added To Accomodation Table.cs" />
     <Compile Include="Migrations\202004071701536_Description Is Added To Accomodation Table.Designer.cs">
       <DependentUpon>202004071701536_Description Is Added To Accomodation Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004112124471_addedUserProperties.cs" />
+    <Compile Include="Migrations\202004112124471_addedUserProperties.Designer.cs">
+      <DependentUpon>202004112124471_addedUserProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accomodation.cs" />
@@ -301,9 +307,12 @@
     <Content Include="Areas\Admin\Views\AccomodationPackages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AccomodationPackages\_Action.cshtml" />
     <Content Include="Areas\Admin\Views\AccomodationPackages\_Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Accomodation\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Accomodation\_Action.cshtml" />
-    <Content Include="Areas\Admin\Views\Accomodation\_Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Accomodations\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Accomodations\_Action.cshtml" />
+    <Content Include="Areas\Admin\Views\Accomodations\_Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_Action.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -379,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004071701536_Description Is Added To Accomodation Table.resx">
       <DependentUpon>202004071701536_Description Is Added To Accomodation Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004112124471_addedUserProperties.resx">
+      <DependentUpon>202004112124471_addedUserProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

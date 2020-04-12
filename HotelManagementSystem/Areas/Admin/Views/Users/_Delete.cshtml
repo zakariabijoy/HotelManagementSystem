@@ -1,11 +1,11 @@
 ﻿@using HotelManagementSystem.Areas.Admin.ViewModel
-@model HotelManagementSystem.Areas.Admin.ViewModel.AccomodationActionViewModel
+@model HotelManagementSystem.Areas.Admin.ViewModel.UsersActionViewModel
 
 <div class="modal-content">
     <div class="modal-header">
-        @if (Model.Id > 0)
+        @if (!string.IsNullOrEmpty(Model.Id))
         {
-            <h5 class="modal-title" id="exampleModalLabel">Delete Accomodation</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
         }
 
 
@@ -17,10 +17,14 @@
         <form id="actionForm">
             <input id="hiddenId" type="hidden" name="Id" value="@Model.Id" />
             <div class="alert alert-danger" role="alert">
-                Are you sure you want to delete this Accomodation ?
+                Are you sure you want to delete this User ?
             </div>
 
         </form>
+
+        <div class="errorDiv text-danger">
+
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i>Close</button>
@@ -32,14 +36,15 @@
     $("#actionButton").click(function () {
 
         $.ajax({
-            url: '@Url.Action("Delete","Accomodation")',
+            url: '@Url.Action("Delete","Users")',
             type: "POST",
             data: $("#actionForm").serialize()
         }).done(function(response) {
             if (response.success) {
-                location.href = '@Url.Action("Index","Accomodation")';
-            } else {
-                alert("Unable to perform action on Accomodation Package");
+                location.reload();
+            }
+            else {
+                $(".errorDiv").html(response.message);
             }
         });
     });
