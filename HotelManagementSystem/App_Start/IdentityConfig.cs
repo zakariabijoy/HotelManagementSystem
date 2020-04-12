@@ -14,6 +14,7 @@ using HotelManagementSystem.Models;
 
 namespace HotelManagementSystem
 {
+    
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
@@ -29,6 +30,18 @@ namespace HotelManagementSystem
         {
             // Plug in your SMS service here to send a text message.
             return Task.FromResult(0);
+        }
+    }
+    // Configure the application role manager used in this application. RoleManager is defined in ASP.NET Identity and is used by the application.
+    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    {
+        public ApplicationRoleManager(IRoleStore<IdentityRole, string> store) : base(store)
+        {
+        }
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            var roleStore = new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>());
+            return new ApplicationRoleManager(roleStore);
         }
     }
 

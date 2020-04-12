@@ -1,0 +1,99 @@
+﻿@using HotelManagementSystem.Areas.Admin.ViewModel
+@using PagedList.Mvc
+@using PagedList
+@model HotelManagementSystem.Areas.Admin.ViewModel.RolesViewModel
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Roles</h2>
+<hr />
+<form>
+    <div class="input-group mb-3">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search.." value="@Model.SearchTerm">
+        
+        <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search mr-1"></i>Search</button>
+            <a class="btn btn-outline-secondary" href="@Url.Action("Index", "Roles")"><i class="fas fa-redo mr-1"></i>Reset</a>
+            <button data-href="@Url.Action("Action", "Roles")" class="data-href btn btn-outline-success" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle mr-1"></i>Create</button>
+        </div>
+    </div>
+</form>
+@if (Model != null && Model.Roles != null && Model.Roles.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Users</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var role in Model.Roles)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>@role.Users.Count()</td>
+
+                    <td>
+                        <button data-href="@Url.Action("Action","Roles",new {id=role.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
+                        <button data-href="@Url.Action("Delete","Roles",new {id=role.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+
+                    </td>
+                </tr>
+
+            }
+
+
+
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.Roles, i => Url.Action("Index", "Roles", new { searchTerm = Model.SearchTerm,  page = i }), new PagedListRenderOptions
+    {
+
+        UlElementClasses = new string[] { "pagination" },
+        LiElementClasses = new string[] { "page-item" }
+
+
+    })
+}
+else
+{
+<div class="alert alert-warning" role="alert">
+    Sorry! No records exists.
+</div>
+}
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".page-item a").addClass("page-link");
+        });
+
+    </script>
+    <script>
+        $(".data-href").click(function () {
+            $.ajax({
+                url: $(this).attr("data-href"),
+            })
+                .done(function (response) {
+                    $("#exampleModal .modal-dialog").html(response);
+                });
+
+        });
+    </script>
+}

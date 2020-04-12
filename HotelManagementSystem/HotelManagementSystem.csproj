@@ -214,10 +214,12 @@
     <Compile Include="Areas\Admin\Controllers\AccomodationPackagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccomodationTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\ViewModel\AccomodationPackagesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\AccomodationTypeViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\AccomodationViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModel\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\UsersViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -313,6 +315,9 @@
     <Content Include="Areas\Admin\Views\Users\_Action.cshtml" />
     <Content Include="Areas\Admin\Views\Users\_Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\_Action.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\_Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

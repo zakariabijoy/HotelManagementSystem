@@ -15,8 +15,8 @@
 <form>
     <div class="input-group mb-3">
         <input type="text" name="searchTerm" class="form-control" placeholder="Search.." value="@Model.SearchTerm">
-        <select class="custom-select" id="inputGroupSelect01" name="AccomodationPackageId">
-            <option value="">Select Role</option>
+        <select class="custom-select" id="inputGroupSelect01" name="roleId">
+            <option value="">Select Role..</option>
             @if (Model.Roles != null && Model.Roles.Count() > 0)
             {
                 foreach (var role in Model.Roles)

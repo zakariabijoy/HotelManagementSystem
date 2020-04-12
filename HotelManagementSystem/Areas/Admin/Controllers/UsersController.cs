@@ -16,6 +16,7 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
 
         public ApplicationSignInManager SignInManager
         {
@@ -43,24 +44,29 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
 
             }
         }
-
+        public ApplicationRoleManager RoleManager
+        {
+            get { return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>(); }
+            private set { _roleManager = value; }
+        }
         public UsersController()
         {
 
         }
 
-        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
 
-            userManager = userManager;
-            signInManager = signInManager;
+            UserManager = userManager;
+            SignInManager = signInManager;
+            RoleManager = roleManager;
         }
-        ApplicationDbContext _context = new ApplicationDbContext();
+        
         // GET: Admin/AccomodationTypes
         public ActionResult Index(string searchTerm, string roleId, int? page)
         {
             page = page ?? 1;
-            var roles = _context.Roles.ToList();
+            var roles = RoleManager.Roles.ToList();
             var model = new UsersViewModel()
             {
                 Users = Users(searchTerm, roleId, page.Value),
@@ -92,7 +98,7 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
         [HttpGet]
         public async Task<ActionResult> Action(string id)
         {
-            var roles = _context.Roles.ToList();
+            var roles = RoleManager.Roles.ToList();
             if (string.IsNullOrEmpty(id))                                        //create form
             {
                 var model = new UsersActionViewModel()
