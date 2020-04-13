@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -63,13 +64,13 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
         }
         
         // GET: Admin/AccomodationTypes
-        public ActionResult Index(string searchTerm, string roleId, int? page)
+        public async Task<ActionResult> Index(string searchTerm, string roleId, int? page)
         {
             page = page ?? 1;
             var roles = RoleManager.Roles.ToList();
             var model = new UsersViewModel()
             {
-                Users = Users(searchTerm, roleId, page.Value),
+                Users =  await Users(searchTerm, roleId, page.Value),
                 Roles = roles,
                 SearchTerm = searchTerm,
                 RoleId = roleId
@@ -78,7 +79,7 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
             return View(model);
         }
         [NonAction]
-        public IPagedList<ApplicationUser> Users(string searchTerm, string roleId, int page)
+        public async Task<IPagedList<ApplicationUser>> Users(string searchTerm, string roleId, int page)
         {
             var users = UserManager.Users.AsQueryable();
             if (!string.IsNullOrEmpty(searchTerm))
@@ -88,7 +89,9 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(roleId))
             {
-                //users = users.Where(a => a.Roles. == accomodationPackageId);
+                var role = await RoleManager.FindByIdAsync(roleId);
+                var userIds = role.Users.Select(u => u.UserId).ToList();
+                users = users.Where(u=>userIds.Contains(u.Id));
             }
 
 
@@ -191,8 +194,56 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
                 return Json(new { success = false, message = "invalid user" }, JsonRequestBehavior.AllowGet);
             }
 
-            
-           
         }
+
+        [HttpGet]
+        public async Task<ActionResult> UserRoles(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            var userRoleIds = user.Roles.Select(r => r.RoleId).ToList();
+            var userRoles = RoleManager.Roles.Where(r => userRoleIds.Contains(r.Id)).ToList();
+            var roles = RoleManager.Roles.Where(r=>!userRoleIds.Contains(r.Id)).ToList();
+
+            var model = new UserRolesViewModel()
+            {
+                UserId = user.Id,
+                Roles = roles,
+                UserRoles = userRoles
+            };
+
+            return PartialView("_UserRoles", model);
+          
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UserRoleOperation(string userId, string roleId, bool isDelete = false)
+        {
+            IdentityResult result = null;
+            var user = await UserManager.FindByIdAsync(userId);
+            var role =await RoleManager.FindByIdAsync(roleId);
+
+            if (user != null && role != null)
+            {
+                if (!isDelete)
+                {
+                    result = await UserManager.AddToRoleAsync(userId, role.Name);
+                }
+                else
+                {
+                    result = await UserManager.RemoveFromRoleAsync(userId, role.Name);
+                }
+
+                return Json(new { success = result.Succeeded, message = string.Join("</br>", result.Errors) });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Invalid operation" });
+            }
+            
+            
+        }
+        
+        
     }
 }

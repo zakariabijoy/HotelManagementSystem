@@ -318,6 +318,7 @@
     <Content Include="Areas\Admin\Views\Roles\_Action.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\_Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_UserRoles.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

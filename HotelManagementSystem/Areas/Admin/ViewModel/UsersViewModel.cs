@@ -33,4 +33,12 @@ namespace HotelManagementSystem.Areas.Admin.ViewModel
         public IEnumerable<IdentityRole> Roles { get; set; }
 
     }
+
+    public class UserRolesViewModel
+    {
+        public string UserId { get; set; }
+        public IEnumerable<IdentityRole> Roles { get; set; }
+        public IEnumerable<IdentityRole> UserRoles { get; set; }
+
+    }
 }

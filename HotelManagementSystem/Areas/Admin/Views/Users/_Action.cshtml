@@ -19,21 +19,7 @@
     <div class="modal-body">
         <form id="actionForm">
             <input id="hiddenId" type="hidden" name="Id" value="@Model.Id" />
-            @*<div class="form-group">
-            <label>Accomodation Package</label>
-            <select name="AccomodationPackageId" class="form-control">
-                <option value="">--Select Accomodation Package--</option>
-                @if (Model.AccomodationPackages != null)
-                {
-                    foreach (var accomodationPackage in Model.AccomodationPackages)
-                    {
-                        <option value="@accomodationPackage.Id" @(Model.AccomodationPackageId == null ? string.Empty : Model.AccomodationPackageId == accomodationPackage.Id ? "selected" : string.Empty)>
-                            @accomodationPackage.Name
-                        </option>
-                    }
-                }
-            </select>
-        </div>*@
+        
             <div class="form-group">
                 <label>Full Name</label>
                 <input name="FullName" class="form-control" placeholder="Enter Full  Name" value="@Model.FullName">

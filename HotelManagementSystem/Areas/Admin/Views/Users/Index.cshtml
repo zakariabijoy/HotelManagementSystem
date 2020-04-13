@@ -14,7 +14,7 @@
 <hr />
 <form>
     <div class="input-group mb-3">
-        <input type="text" name="searchTerm" class="form-control" placeholder="Search.." value="@Model.SearchTerm">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search By Email.." value="@Model.SearchTerm">
         <select class="custom-select" id="inputGroupSelect01" name="roleId">
             <option value="">Select Role..</option>
             @if (Model.Roles != null && Model.Roles.Count() > 0)
@@ -38,25 +38,28 @@
 {
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th scope="col">User Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col">Action</th>
+        <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+            <th scope="col">Action</th>
 
-            </tr>
+        </tr>
         </thead>
         <tbody>
             @foreach (var user in Model.Users)
             {
                 <tr>
+                    <td>@user.FullName</td>
                     <td>@user.UserName</td>
                     <td>@user.Email</td>
-                    <td>@*@user.AccomodationPackage.Name*@</td>
+                    <td>@user.Roles.Count()</td>
 
                     <td>
-                        <button data-href="@Url.Action("Action","Users",new {id=user.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
-                        <button data-href="@Url.Action("Delete","Users",new {id=user.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+                        <button data-href="@Url.Action("Action", "Users", new {id = user.Id})" type="button" class="data-href btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-pencil-alt mr-1"></i>Edit</button>
+                        <button data-href="@Url.Action("Delete", "Users", new {id = user.Id})" type="button" class="data-href btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+                        <button data-href="@Url.Action("UserRoles", "Users", new {id = user.Id})" type="button" class="data-href btn btn-info" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-shield mr-1"></i>Roles</button>
 
                     </td>
                 </tr>

@@ -1,0 +1,106 @@
+﻿@using HotelManagementSystem.Areas.Admin.ViewModel
+@model HotelManagementSystem.Areas.Admin.ViewModel.UserRolesViewModel
+
+    <div class="modal-content">
+        <div class="modal-header">
+
+            <h5 class="modal-title" id="exampleModalLabel"> User Roles </h5>
+
+
+            <button type="button" class="close closeRoleModal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            @if (Model.UserRoles != null && Model.UserRoles.Count() > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Current User's Roles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var userRole in Model.UserRoles)
+                        {
+                            <tr>
+                                <td>@userRole.Name</td>
+                                <td><button data-href="@Url.Action("UserRoleOperation", "Users", new {userId= Model.UserId,roleId = userRole.Id, isDelete = true})" type="button" class="btnRoleOperation btn btn-danger"><i class="fas fa-user-times mr-1"></i>Delete</button></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    This user has no roles
+                </div>
+            }
+
+
+            @if (Model.Roles != null && Model.Roles.Count() > 0)
+            {
+                <hr />
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Assign New Roles</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var role in Model.Roles)
+                        {
+                            <tr>
+                                <td>@role.Name</td>
+                                <td><button data-href="@Url.Action("UserRoleOperation", "Users", new {userId =Model.UserId,roleId = role.Id})" type="button" class="btnRoleOperation btn btn-success"><i class="fas fa-user-check mr-1"></i>Assign</button></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            }
+
+
+
+        </div>
+        <div class="errorDiv">
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="closeRoleModal btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i>Close</button>
+        </div>
+
+    </div>
+
+
+<script>
+    $(".btnRoleOperation").click(function () {
+
+            $.ajax({
+                url: $(this).attr("data-href"),
+                type: "POST"
+                })
+                .done(function (response) {
+                    if (response.success) {
+
+                        $.ajax({
+                                url: '@Url.Action("UserRoles","Users",new {id = @Model.UserId})'
+                            })
+                            .done(function (response) {
+                                $("#exampleModal .modal-dialog").html(response);
+                            });
+                    } else {
+                        $(".errorDiv").html(response.message);
+                    }
+
+
+        });
+    });
+
+    $(".closeRoleModal").click(function() {
+        location.reload();
+    });
+</script>
