@@ -1,8 +1,7 @@
-﻿using HotelManagementSystem.Areas.Admin.ViewModel;
-using HotelManagementSystem.Models;
-using System.Linq;
-using System.Web.Helpers;
+﻿using System.Linq;
 using System.Web.Mvc;
+using HotelManagementSystem.Areas.Admin.ViewModel;
+using HotelManagementSystem.Models;
 
 namespace HotelManagementSystem.Areas.Admin.Controllers
 {

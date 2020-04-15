@@ -221,6 +221,7 @@
     <Compile Include="Areas\Admin\ViewModel\AccomodationViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\UsersViewModel.cs" />
+    <Compile Include="Controllers\AccomodationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -258,6 +259,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Variable\Variables.cs" />
+    <Compile Include="ViewModels\AccomodationsViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\css\simple-sidebar.css" />
@@ -512,6 +515,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\js\.DS_Store" />
+    <Content Include="Views\Accomodation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

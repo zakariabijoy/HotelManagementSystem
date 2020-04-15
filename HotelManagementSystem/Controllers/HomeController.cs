@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HotelManagementSystem.Models;
+using HotelManagementSystem.ViewModels;
 
 namespace HotelManagementSystem.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            var model = new HomeViewmodel()
+            {
+                AccomodationTypes = _context.AccomodationTypes.ToList()
+            };
+            return View(model);
         }
 
         public ActionResult About()

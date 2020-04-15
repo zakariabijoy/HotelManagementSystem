@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using HotelManagementSystem.Areas.Admin.ViewModel;
 using HotelManagementSystem.Models;
-using PagedList.Mvc;
 using PagedList;
 
 namespace HotelManagementSystem.Areas.Admin.Controllers

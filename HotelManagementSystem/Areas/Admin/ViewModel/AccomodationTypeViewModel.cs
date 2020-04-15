@@ -1,5 +1,5 @@
-﻿using HotelManagementSystem.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using HotelManagementSystem.Models;
 
 namespace HotelManagementSystem.Areas.Admin.ViewModel
 {
