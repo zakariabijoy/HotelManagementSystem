@@ -1,4 +1,6 @@
-﻿namespace HotelManagementSystem.Models
+﻿using System.Web.UI.WebControls;
+
+namespace HotelManagementSystem.Models
 {
     public class Accomodation
     {
