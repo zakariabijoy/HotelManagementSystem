@@ -29,6 +29,8 @@ namespace HotelManagementSystem.Models
         public DbSet<AccomodationPackage> AccomodationPackages { get; set; }
         public DbSet<Accomodation> Accomodations { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
+        
         public ApplicationDbContext()
             : base("HMSDbContext", throwIfV1Schema: false)
         {

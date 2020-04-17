@@ -21,6 +21,7 @@ namespace HotelManagementSystem.Areas.Admin.ViewModel
 
         public string Name { get; set; }
         public string Description { get; set; }
+        public List<Picture> Pictures { get; set; }
 
         public IEnumerable<AccomodationPackage> AccomodationPackages { get; set; }
 

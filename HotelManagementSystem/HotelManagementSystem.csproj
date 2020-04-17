@@ -248,6 +248,12 @@
     <Compile Include="Migrations\202004112124471_addedUserProperties.Designer.cs">
       <DependentUpon>202004112124471_addedUserProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004161218124_addedPictureEntity.cs" />
+    <Compile Include="Migrations\202004161218124_addedPictureEntity.Designer.cs">
+      <DependentUpon>202004161218124_addedPictureEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004172029298_pictureTableModified\.cs" />
+    <Compile Include="Migrations\202004172029298_pictureTableModified\.Designer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accomodation.cs" />
     <Compile Include="Models\AccomodationPackage.cs" />
@@ -256,6 +262,7 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Variable\Variables.cs" />
@@ -398,6 +405,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -535,6 +543,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004112124471_addedUserProperties.resx">
       <DependentUpon>202004112124471_addedUserProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004161218124_addedPictureEntity.resx">
+      <DependentUpon>202004161218124_addedPictureEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004172029298_pictureTableModified\.resx">
+      <DependentUpon>.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

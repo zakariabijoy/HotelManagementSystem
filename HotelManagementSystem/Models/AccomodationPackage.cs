@@ -1,4 +1,6 @@
-﻿namespace HotelManagementSystem.Models
+﻿using System.Collections.Generic;
+
+namespace HotelManagementSystem.Models
 {
     public class AccomodationPackage
     {
@@ -9,6 +11,8 @@
 
         public string Name { get; set; }
         public int NoOfRoom { get; set; }
-        public decimal FeePerNight { get; set; }    
+        public decimal FeePerNight { get; set; }
+
+        public List<Picture> Pictures { get; set; }   
     }
 }

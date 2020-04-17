@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web;
 using HotelManagementSystem.Models;
 using PagedList;
 
@@ -19,6 +20,8 @@ namespace HotelManagementSystem.Areas.Admin.ViewModel
         public string Name { get; set; }
         public int NoOfRoom { get; set; }
         public decimal FeePerNight { get; set; }
+        public HttpPostedFileBase[] PictureFiles { get; set; }
+        public List<Picture> Pictures { get; set; }
 
         public IEnumerable<AccomodationType> AccomodationTypes { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.Web.UI.WebControls;
+﻿using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace HotelManagementSystem.Models
 {
@@ -12,5 +13,6 @@ namespace HotelManagementSystem.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public List<Picture> Pictures { get; set; }
     }
 }
