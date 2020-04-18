@@ -285,6 +285,7 @@
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.min.js" />
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.slim.js" />
     <Content Include="Areas\Admin\Content\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Areas\Admin\Content\vendor\sweetalert2.all.min.js" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap-datepicker.css" />
     <Content Include="Content\css\bootstrap.css" />

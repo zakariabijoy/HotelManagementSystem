@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using HotelManagementSystem.Areas.Admin.ViewModel;
 using HotelManagementSystem.Models;
@@ -58,13 +60,15 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
             else                                                   // edit form
             {
                 var accomodation = _context.Accomodations.Find(id);
+                var pictures = _context.Pictures.Where(p => p.AccomodationId == accomodation.Id).ToList();
                 var model = new AccomodationActionViewModel()
                 {
                     Id = accomodation.Id,
                     Name = accomodation.Name,
                     Description = accomodation.Description,
                     AccomodationPackageId = accomodation.AccomodationPackageId,
-                    AccomodationPackages = accomodationPackages
+                    AccomodationPackages = accomodationPackages,
+                    Pictures = pictures
                 };
                 return PartialView("_Action", model);
             }
@@ -72,7 +76,7 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Action(Accomodation model)
+        public ActionResult Action(AccomodationActionViewModel model)
         {
             if (model.Id > 0)                           // edit a accommodation type
             {
@@ -81,7 +85,31 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
                 accomodation.Name = model.Name;
                 accomodation.AccomodationPackageId = model.AccomodationPackageId;
                 accomodation.Description = model.Description;
-               
+
+                if (model.PictureFiles[0] != null)
+                {
+                    foreach (var pictureFile in model.PictureFiles)
+                    {
+                        string directoryPath = "~/images/UploadedImages/";
+
+                        string fileName = Path.GetFileNameWithoutExtension(pictureFile.FileName);
+
+                        string extension = Path.GetExtension(pictureFile.FileName);
+                        fileName = fileName + "-" + DateTime.Now.ToString("yymmssfff") + Guid.NewGuid() + extension;
+                        var ServerSavePath = Path.Combine(Server.MapPath(directoryPath) + fileName);
+
+                        //Save file to server folder  
+                        pictureFile.SaveAs(ServerSavePath);
+                        //assigning file uploaded status to ViewBag for showing message to user.  
+
+                        var picture = new Picture();
+                        picture.Url = (string)directoryPath + fileName;
+                        picture.AccomodationId = model.Id;
+                        _context.Pictures.Add(picture);
+
+                    }
+                }
+
             }
             else                                          // create a new accommodation type
             {
@@ -92,6 +120,30 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
                 accomodation.Description = model.Description;
 
                 _context.Accomodations.Add(accomodation);
+
+                if (model.PictureFiles[0] != null)
+                {
+                    foreach (var pictureFile in model.PictureFiles)
+                    {
+                        string directoryPath = "~/images/UploadedImages/";
+
+                        string fileName = Path.GetFileNameWithoutExtension(pictureFile.FileName);
+
+                        string extension = Path.GetExtension(pictureFile.FileName);
+                        fileName = fileName + "-" + DateTime.Now.ToString("yymmssfff") + Guid.NewGuid() + extension;
+                        var ServerSavePath = Path.Combine(Server.MapPath(directoryPath) + fileName);
+
+                        //Save file to server folder  
+                        pictureFile.SaveAs(ServerSavePath);
+                        //assigning file uploaded status to ViewBag for showing message to user.  
+
+                        var picture = new Picture();
+                        picture.Url = (string)directoryPath + fileName;
+                        picture.AccomodationId = model.Id;
+                        _context.Pictures.Add(picture);
+
+                    }
+                }
             }
 
             _context.SaveChanges();
@@ -116,10 +168,35 @@ namespace HotelManagementSystem.Areas.Admin.Controllers
         {
 
             var accomodation = _context.Accomodations.Find(model.Id);
+            var pics = _context.Pictures.Where(p => p.AccomodationId == accomodation.Id).ToList();
+            foreach (var pic in pics)
+            {
+                string fullPath = Request.MapPath("~" + Url.Content(pic.Url));
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+
+                _context.Pictures.Remove(pic);
+            }
 
             _context.Accomodations.Remove(accomodation);
             _context.SaveChanges();
 
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult PictureDelete(int picid)
+        {
+            var pic = _context.Pictures.Find(picid);
+            string fullPath = Request.MapPath("~" + Url.Content(pic.Url));
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+
+            _context.Pictures.Remove(pic);
+            _context.SaveChanges();
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }

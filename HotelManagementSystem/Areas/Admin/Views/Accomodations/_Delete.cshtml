@@ -36,7 +36,11 @@
             data: $("#actionForm").serialize()
         }).done(function(response) {
             if (response.success) {
+                debugger;
+
                 location.href = '@Url.Action("Index","Accomodations")';
+
+
             } else {
                 alert("Unable to perform action on Accomodation Package");
             }

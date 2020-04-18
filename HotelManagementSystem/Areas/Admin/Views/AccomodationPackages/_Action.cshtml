@@ -125,22 +125,45 @@
     $(document).ready(function() {
         $(".btnimgdelete").click(function () {
 
-            $.ajax({
-                    url: $(this).attr("d-href"),
-                    type: "POST"
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
 
-                })
-                .done(function(response) {
-                    if (response.success) {
-                        $.ajax({
-                            url:'@Url.Action("Action","AccomodationPackages",new {id=Model.Id})'
-                        }).done(function(response) {
-                            $("#exampleModal .modal-dialog").html(response);
+                if (result.value) {
+
+                    $.ajax({
+                            url: $(this).attr("d-href"),
+                            type: "POST"
+
+                        })
+                        .done(function(response) {
+                            if (response.success) {
+                                $.ajax({
+                                    url:'@Url.Action("Action","AccomodationPackages",new {id=Model.Id})'
+                                }).done(function(response) {
+                                    $("#exampleModal .modal-dialog").html(response);
+                                });
+                            } else {
+                                alert("Unable to perform delete image");
+                            }
                         });
-                    } else {
-                        alert("Unable to perform delete image");
-                    }
-                });
+
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            })
+
+
+            
         });
     });
 

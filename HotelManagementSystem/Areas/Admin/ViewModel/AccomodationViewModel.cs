@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web;
 using HotelManagementSystem.Models;
 using PagedList;
 
@@ -21,6 +22,7 @@ namespace HotelManagementSystem.Areas.Admin.ViewModel
 
         public string Name { get; set; }
         public string Description { get; set; }
+        public HttpPostedFileBase[] PictureFiles { get; set; }
         public List<Picture> Pictures { get; set; }
 
         public IEnumerable<AccomodationPackage> AccomodationPackages { get; set; }
