@@ -221,7 +221,6 @@
     <Compile Include="Areas\Admin\ViewModel\AccomodationViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\UsersViewModel.cs" />
-    <Compile Include="Controllers\AccomodationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -355,6 +354,16 @@
     <Content Include="images\room-4.jpg" />
     <Content Include="images\room-5.jpg" />
     <Content Include="images\room-6.jpg" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29 - Copy-20183370547aac6a2-62af-44f8-aa69-3c5c7488f2f3.png" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29 - Copy-20193189540d7386a-9507-471c-b3b6-a7068ec5ef54.png" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29 - Copy-201950667dca11ebc-d812-4453-8132-22af194af120.png" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29-2018398785e79ff19-a0ee-4b26-bc24-e4dae392f030.png" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29-2019107505308503e-cd68-4420-9381-5fdc315f02d7.png" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29-201931897ba218452-3afe-44d2-9a55-556fdf7f5bd9.png" />
+    <Content Include="images\UploadedImages\Screenshot %2841%29-201950670cb9ded7a-dae5-4578-8cf2-108524e74f80.png" />
+    <Content Include="images\UploadedImages\Screenshot %2842%29 - Copy-201847967b3daedd6-10cc-49c9-bbe6-44b89019a390.png" />
+    <Content Include="images\UploadedImages\Screenshot %2842%29 - Copy-201910752157854d2-223b-4ee3-9bd0-d9f8afe09517.png" />
+    <Content Include="images\UploadedImages\Screenshot %2842%29 - Copy-201950672ca87df3c-1f0d-4bec-844a-f2cef97b8bc5.png" />
     <Content Include="Scripts\js\bootstrap-datepicker.js" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\google_map.js" />
@@ -406,7 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -524,7 +532,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\js\.DS_Store" />
-    <Content Include="Views\Accomodation\Index.cshtml" />
+    <Content Include="Views\Home\AccomodationPackageDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

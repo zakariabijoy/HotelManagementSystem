@@ -1,0 +1,62 @@
+﻿@model HotelManagementSystem.Models.AccomodationPackage
+@{
+    ViewBag.Title = "AccomodationPackageDetails";
+}
+
+
+@{
+    var thumbnailPicture = Model.Pictures != null ? Model.Pictures.FirstOrDefault() : null;
+    var thumbnailURL = thumbnailPicture != null ? Url.Content(thumbnailPicture.Url) : "/images/img_bg_5.jpg";
+}
+
+<aside id="colorlib-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style="background-image: url(@thumbnailURL);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-md-offset-3 slider-text">
+                            <div class="slider-text-inner slider-text-inner2 text-center">
+                                <h2>Accomodation Package</h2>
+                                <h1>@Model.Name</h1>
+                                <h2>@Model.AccomodationType.Name</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div id="colorlib-amenities">
+    <div class="container">
+        <div class="row">
+            <div class="amenities-flex">
+                <div class="desc animate-box">
+                    <p class="price">
+                        <span class="currency">$</span>
+                        <span class="price-room">
+                            @Model.FeePerNight
+                        </span>
+                        <span class="per">/ per night</span>
+                    </p>
+                    <strong>Rooms: @Model.NoOfRoom</strong>
+                    <p>
+                        @Model.AccomodationType.Description
+                    </p>
+                </div>
+                <div class="amenities-img animate-box" style="height:400px; background-image: url(@thumbnailURL);"></div>
+
+                @if (Model.Pictures != null && Model.Pictures.Count() > 0)
+                {
+                    foreach (var picture in Model.Pictures.Where(x=> x!= thumbnailPicture))
+                    {
+                        <div class="amenities-img animate-box" style="height:400px; background-image: url(@Url.Content(picture.Url));"></div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
